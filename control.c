@@ -19,6 +19,7 @@
 #include <sys/types.h>
 
 #include <event.h>
+#include <stdarg.h>
 #include <string.h>
 #include <unistd.h>
 
@@ -109,11 +110,13 @@ control_read_callback(unused struct bufferevent *bufev, void *data)
 }
 
 /* Control error callback. */
+/* ARGSUSED */
 void
 control_error_callback(
     unused struct bufferevent *bufev, unused short what, void *data)
 {
     struct client   *c = data;
+    //TODO(georgen): implement this
 }
 
 /* Initialise as a control client. */
@@ -137,7 +140,57 @@ control_start(struct client *c)
 }
 
 void
-control_write_str(struct client* c, const char* str)
+control_write_str(struct client *c, const char *str)
 {
-    evbuffer_add_printf(c->stdout_event->output, str);
+    control_write(c, str, strlen(str));
+}
+
+void
+control_write(struct client *c, const char *buf, int len)
+{
+    evbuffer_add(c->stdout_event->output, buf, len);
+}
+
+void
+control_write_printf(struct client *c, const char *format, ...)
+{
+    va_list argp;
+    va_start(argp, format);
+
+    evbuffer_add_vprintf(c->stdout_event->output, format, argp);
+
+    va_end(argp);
+}
+
+void
+control_write_window_pane(struct client *c, struct window_pane *wp)
+{
+    control_write_str(c, wp->window->name);
+    control_write_str(c, ".");
+    control_write_printf(c, "%ud", wp->id);
+}
+
+void
+control_write_input(struct client *c, struct window_pane *wp,
+                    const u_char *buf, int len)
+{
+    control_write_str(c, "%output ");
+    control_write_window_pane(c, wp);
+    control_write_printf(c, "%d ", len);
+    control_write(c, buf, len);
+    control_write_str(c, "\n");
+}
+
+void
+control_broadcast_input(struct window_pane *wp, const u_char *buf, size_t len)
+{
+    for (int i = 0; i < (int) ARRAY_LENGTH(&clients); i++) {
+        struct client *c = ARRAY_ITEM(&clients, i);
+        if (c->flags & CLIENT_CONTROL) {
+            if (c->flags & CLIENT_SUSPENDED) {
+                continue;
+            }
+            control_write_input(c, wp, buf, len);
+        }
+    }
 }
