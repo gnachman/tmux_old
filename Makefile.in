@@ -137,10 +137,10 @@ dist_tmux_OBJECTS = arguments.$(OBJEXT) attributes.$(OBJEXT) \
 	cmd-suspend-client.$(OBJEXT) cmd-swap-pane.$(OBJEXT) \
 	cmd-swap-window.$(OBJEXT) cmd-switch-client.$(OBJEXT) \
 	cmd-unbind-key.$(OBJEXT) cmd-unlink-window.$(OBJEXT) \
-	cmd.$(OBJEXT) colour.$(OBJEXT) environ.$(OBJEXT) \
-	grid-utf8.$(OBJEXT) grid-view.$(OBJEXT) grid.$(OBJEXT) \
-	input-keys.$(OBJEXT) input.$(OBJEXT) job.$(OBJEXT) \
-	key-bindings.$(OBJEXT) key-string.$(OBJEXT) \
+	cmd.$(OBJEXT) colour.$(OBJEXT) control.$(OBJEXT) \
+	environ.$(OBJEXT) grid-utf8.$(OBJEXT) grid-view.$(OBJEXT) \
+	grid.$(OBJEXT) input-keys.$(OBJEXT) input.$(OBJEXT) \
+	job.$(OBJEXT) key-bindings.$(OBJEXT) key-string.$(OBJEXT) \
 	layout-custom.$(OBJEXT) layout-set.$(OBJEXT) \
 	layout-string.$(OBJEXT) layout.$(OBJEXT) log.$(OBJEXT) \
 	mode-key.$(OBJEXT) names.$(OBJEXT) options-table.$(OBJEXT) \
@@ -411,6 +411,7 @@ dist_tmux_SOURCES = \
 	cmd-unlink-window.c \
 	cmd.c \
 	colour.c \
+	control.c \
 	environ.c \
 	grid-utf8.c \
 	grid-view.c \
@@ -626,6 +627,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmd-unlink-window.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cmd.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/colour.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/control.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/daemon.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/environ.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fgetln.Po@am__quote@

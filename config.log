@@ -30,8 +30,8 @@ Kernel configured for up to 2 processors.
 Processor type: i486 (Intel 80486)
 Processors active: 0 1
 Primary memory available: 4.00 gigabytes
-Default processor set: 71 tasks, 350 threads, 2 processors
-Load average: 0.30, Mach factor: 1.68
+Default processor set: 76 tasks, 362 threads, 2 processors
+Load average: 0.32, Mach factor: 1.66
 /bin/machine           = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
@@ -918,7 +918,7 @@ configure:4529: checking for library containing event_init
 configure:4560: gcc -o conftest -g -O2   conftest.c  >&5
 Undefined symbols:
   "_event_init", referenced from:
-      _main in ccCL0yTL.o
+      _main in ccEeHLbH.o
 ld: symbol(s) not found
 collect2: ld returned 1 exit status
 configure:4560: $? = 1
@@ -976,7 +976,7 @@ configure:4592: checking for library containing setupterm
 configure:4623: gcc -o conftest -g -O2   conftest.c -levent  >&5
 Undefined symbols:
   "_setupterm", referenced from:
-      _main in cce8YuER.o
+      _main in ccO2eFyz.o
 ld: symbol(s) not found
 collect2: ld returned 1 exit status
 configure:4623: $? = 1
@@ -1153,7 +1153,7 @@ configure:4931: checking for library containing imsg_init
 configure:4962: gcc -o conftest -g -O2   conftest.c -lcurses -levent  >&5
 Undefined symbols:
   "_imsg_init", referenced from:
-      _main in ccTgr58j.o
+      _main in ccy5Oano.o
 ld: symbol(s) not found
 collect2: ld returned 1 exit status
 configure:4962: $? = 1
@@ -1207,7 +1207,7 @@ configure: failed program was:
 configure:4962: gcc -o conftest -g -O2   conftest.c -lutil  -lcurses -levent  >&5
 Undefined symbols:
   "_imsg_init", referenced from:
-      _main in ccDeOc89.o
+      _main in cc5MyC6Q.o
 ld: symbol(s) not found
 collect2: ld returned 1 exit status
 configure:4962: $? = 1
@@ -1267,7 +1267,7 @@ configure:5075: checking for closefrom
 configure:5075: gcc -o conftest -g -O2   conftest.c -lcurses -levent  >&5
 Undefined symbols:
   "_closefrom", referenced from:
-      _main in cc2jgbFR.o
+      _main in cc75ejwU.o
 ld: symbol(s) not found
 collect2: ld returned 1 exit status
 configure:5075: $? = 1
@@ -1379,7 +1379,7 @@ configure:5264: checking for strtonum
 configure:5264: gcc -o conftest -g -O2   conftest.c -lcurses -levent  >&5
 Undefined symbols:
   "_strtonum", referenced from:
-      _main in ccPPWEif.o
+      _main in cc1elRf8.o
 ld: symbol(s) not found
 collect2: ld returned 1 exit status
 configure:5264: $? = 1
@@ -1467,7 +1467,7 @@ configure:5285: checking for strnvis
 configure:5285: gcc -o conftest -g -O2   conftest.c -lcurses -levent  >&5
 Undefined symbols:
   "_strnvis", referenced from:
-      _main in cciXQtr0.o
+      _main in ccHnolSJ.o
 ld: symbol(s) not found
 collect2: ld returned 1 exit status
 configure:5285: $? = 1
@@ -1578,7 +1578,7 @@ configure:5406: checking for setproctitle
 configure:5406: gcc -o conftest -g -O2   conftest.c -lcurses -levent  >&5
 Undefined symbols:
   "_setproctitle", referenced from:
-      _main in ccSiGUCU.o
+      _main in ccRlBkPo.o
 ld: symbol(s) not found
 collect2: ld returned 1 exit status
 configure:5406: $? = 1
