@@ -213,6 +213,8 @@ shell_exec(const char *shell, const char *shellcmd)
     fatal("execl failed");
 }
 
+// TODO(georgen): Remove this hack.
+int server_only = 0;
 int
 main(int argc, char **argv)
 {
@@ -228,7 +230,8 @@ main(int argc, char **argv)
     quiet = flags = 0;
     label = path = NULL;
     login_shell = (**argv == '-');
-    while ((opt = getopt(argc, argv, "28Cc:df:lL:qS:uUvV")) != -1) {
+    // TODO(georgen): remove 'x'
+    while ((opt = getopt(argc, argv, "28Cc:df:lL:qS:uUvVx")) != -1) {
         switch (opt) {
         case '2':
             flags |= IDENTIFY_256COLOURS;
@@ -275,6 +278,11 @@ main(int argc, char **argv)
             break;
         case 'v':
             debug_level++;
+            break;
+
+        // TODO(georgen): Remove this hack
+        case 'x':
+            server_only = 1;
             break;
         default:
             usage();

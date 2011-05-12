@@ -98,9 +98,11 @@ control_read_callback(unused struct bufferevent *bufev, void *data)
     ctx.cmdclient = c;
 
     if (cmd_string_parse(line, &cmdlist, &cause) != 0) {
-        evbuffer_add_printf(out->output, "%s", cause);
-        bufferevent_write(out, "\n", 1);
-        xfree(cause);
+        if (cause) {
+            evbuffer_add_printf(out->output, "%s", cause);
+            bufferevent_write(out, "\n", 1);
+            xfree(cause);
+        }
     } else {
         cmd_list_exec(cmdlist, &ctx);
         cmd_list_free(cmdlist);
@@ -165,9 +167,11 @@ control_write_printf(struct client *c, const char *format, ...)
 void
 control_write_window_pane(struct client *c, struct window_pane *wp)
 {
-    control_write_str(c, wp->window->name);
+    u_int i = -1;
+    window_index(wp->window, &i);
+    control_write_printf(c, "%u", i);
     control_write_str(c, ".");
-    control_write_printf(c, "%ud", wp->id);
+    control_write_printf(c, "%u", wp->id);
 }
 
 void
@@ -176,7 +180,7 @@ control_write_input(struct client *c, struct window_pane *wp,
 {
     control_write_str(c, "%output ");
     control_write_window_pane(c, wp);
-    control_write_printf(c, "%d ", len);
+    control_write_printf(c, " %d ", len);
     control_write(c, buf, len);
     control_write_str(c, "\n");
 }
