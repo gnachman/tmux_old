@@ -62,7 +62,7 @@ __dead void
 usage(void)
 {
     fprintf(stderr,
-        "usage: %s [-28lquvV] [-c shell-command] [-f file] [-L socket-name]\n"
+        "usage: %s [-28lquvVC] [-c shell-command] [-f file] [-L socket-name]\n"
         "            [-S socket-path] [command [flags]]\n",
         __progname);
     exit(1);
@@ -284,8 +284,6 @@ main(int argc, char **argv)
     argv += optind;
 
     if (shell_cmd != NULL && argc != 0)
-        usage();
-    if ((flags & IDENTIFY_CONTROL) && (argc != 0 || shell_cmd != NULL))
         usage();
 
     log_open_tty(debug_level);
