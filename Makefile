@@ -230,7 +230,7 @@ AUTOMAKE = ${SHELL} /Users/georgen/tmux/tmux/etc/missing --run automake-1.11
 AWK = awk
 CC = gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -g -O2 $(am__append_1) $(am__append_2) $(am__append_3) \
+CFLAGS = -g -O0 $(am__append_1) $(am__append_2) $(am__append_3) \
 	$(am__append_6) $(am__append_10)
 CPP = gcc -E
 
