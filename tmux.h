@@ -1599,6 +1599,7 @@ int client_main(int, char **, int);
 
 /* control.c */
 void control_start(struct client *);
+void control_write_str(struct client* c, const char* str);
 
 /* key-bindings.c */
 extern struct key_bindings key_bindings;

@@ -124,13 +124,20 @@ control_start(struct client *c)
     if (c->stdin_event != NULL)
         bufferevent_free(c->stdin_event);
     c->stdin_event = bufferevent_new(c->stdin_fd,
-                                     control_read_callback, NULL, control_error_callback, c);
+                                     control_read_callback,
+                                     NULL,
+                                     control_error_callback, c);
     if (c->stdin_event == NULL)
         fatalx("failed to create stdin event");
     bufferevent_enable(c->stdin_event, EV_READ);
 
     /* Write the protocol identifier and version. */
-    evbuffer_add_printf(c->stdout_event->output,
-                        "\033_tmux1\033\\%%noop tmux ready\n");
     bufferevent_enable(c->stdout_event, EV_WRITE);
+    control_write_str(c, "\033_tmux1\033\\%%noop tmux ready\n");
+}
+
+void
+control_write_str(struct client* c, const char* str)
+{
+    evbuffer_add_printf(c->stdout_event->output, str);
 }
